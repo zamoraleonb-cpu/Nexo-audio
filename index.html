@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Nexo Video Kit</title>
+    <title>Nexo Video Kit - Accesibilidad</title>
 
     <style>
         * {
@@ -27,7 +27,6 @@
 
         .boton {
             width: 100%;
-            height: 50vh;
             border: none;
             display: flex;
             flex-direction: column;
@@ -42,10 +41,12 @@
         }
 
         .audio {
+            height: 60vh;
             background: #111111;
         }
 
         .web {
+            height: 40vh;
             background: #555555;
         }
 
@@ -59,7 +60,7 @@
         }
 
         .subtexto {
-            font-size: 18px;
+            font-size: 20px;
             margin-top: 12px;
             font-weight: normal;
         }
@@ -75,11 +76,11 @@
             }
 
             .texto {
-                font-size: 26px;
+                font-size: 25px;
             }
 
             .subtexto {
-                font-size: 16px;
+                font-size: 17px;
             }
         }
     </style>
@@ -87,27 +88,50 @@
 
 <body>
 
-    <!-- PARTE SUPERIOR: AUDIO -->
-    <button class="boton audio" id="botonAudio" onclick="reproducirAudio()">
+    <!-- BOTÓN SUPERIOR: AUDIO -->
+    <button
+        class="boton audio"
+        id="botonAudio"
+        onclick="reproducirAudio()"
+        aria-label="Botón superior. Presiona aquí para escuchar la información del Nexo Video Kit">
+
         <div class="icono">🔊</div>
-        <div class="texto">ESCUCHAR INFORMACIÓN</div>
-        <div class="subtexto">Pulsa aquí para escuchar el audio</div>
+
+        <div class="texto">
+            PRESIONA AQUÍ PARA ESCUCHAR LA INFORMACIÓN
+        </div>
+
+        <div class="subtexto">
+            Botón superior · Reproducir audio
+        </div>
+
     </button>
 
-    <!-- PARTE INFERIOR: GOOGLE SITES -->
+
+    <!-- BOTÓN INFERIOR: PÁGINA WEB -->
     <a
         class="boton web"
         href="https://sites.google.com/view/nexovideokitwebcom/p%C3%A1gina-principal"
         target="_blank"
-        rel="noopener noreferrer">
+        rel="noopener noreferrer"
+        aria-label="Botón inferior. Presiona aquí para visitar la página web del Nexo Video Kit">
 
         <div class="icono">🌐</div>
-        <div class="texto">VISITAR PÁGINA WEB</div>
-        <div class="subtexto">Pulsa aquí para conocer el Nexo Video Kit</div>
+
+        <div class="texto">
+            PRESIONA AQUÍ PARA VISITAR LA PÁGINA WEB
+        </div>
+
+        <div class="subtexto">
+            Botón inferior · Conocer el Nexo Video Kit
+        </div>
+
     </a>
+
 
     <!-- AUDIO -->
     <audio id="audio" src="audio.mp3" preload="auto"></audio>
+
 
     <script>
         const audio = document.getElementById("audio");
@@ -116,16 +140,34 @@
         function reproducirAudio() {
 
             if (audio.paused) {
+
                 audio.play();
-                boton.querySelector(".texto").textContent = "⏸️ PAUSAR INFORMACIÓN";
+
+                boton.querySelector(".texto").textContent =
+                    "⏸️ PAUSAR INFORMACIÓN";
+
+                boton.querySelector(".subtexto").textContent =
+                    "El audio se está reproduciendo";
+
             } else {
+
                 audio.pause();
-                boton.querySelector(".texto").textContent = "ESCUCHAR INFORMACIÓN";
+
+                boton.querySelector(".texto").textContent =
+                    "PRESIONA AQUÍ PARA ESCUCHAR LA INFORMACIÓN";
+
+                boton.querySelector(".subtexto").textContent =
+                    "Botón superior · Reproducir audio";
             }
         }
 
         audio.addEventListener("ended", function() {
-            boton.querySelector(".texto").textContent = "ESCUCHAR INFORMACIÓN";
+
+            boton.querySelector(".texto").textContent =
+                "PRESIONA AQUÍ PARA ESCUCHAR LA INFORMACIÓN";
+
+            boton.querySelector(".subtexto").textContent =
+                "Botón superior · Reproducir audio";
         });
     </script>
 
